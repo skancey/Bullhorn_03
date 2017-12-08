@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <title>Message Form</title>
+</head>
+<body>
+<form action="#" th:action="@{/process}" th:object="${message}" method="POST">
+    <input type="hidden" th:field="*{id}" />
+    Username: <input type="text" th:field="*{sentBy}" />
+    <span th:if="${#fields.hasErrors('sentBy')}" th:errors="*{sentBy}"></span> <br/>
+    Date: <input type="date" th:field="*{postDate}" />
+    <span th:if="${#fields.hasErrors('postDate')}" th:errors="*{postDate}"></span> <br/>
+    Message: <textarea rows="3" th:field="*{content}" />
+    <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span> <br/>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom" th:fragment="footer">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li> Copyright 2017 </li>
+            </ul>
+        </div>
+    </nav>
+    <th:block th:fragment="jslinks">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </th:block>
+</footer>
+</html>
